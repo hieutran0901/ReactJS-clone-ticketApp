@@ -17,11 +17,7 @@ import { Alert, FormControl, InputLabel, MenuItem, Select, Snackbar } from "@mui
 const SearchTicker = () => {
   const { filter, setFilter } = useContext(TickerContext);
   const { listTickerSearch, tickerLoading, ticketlist } = useContext(TickerContext);
-  const [dataCheckBoxAirlines, setDataCheckBoxAirlines] = useState([
-    "Vietnam Airlines",
-    "Vietjet Air",
-    "Bamboo Airways",
-  ]);
+  const [dataCheckBoxAirlines, setDataCheckBoxAirlines] = useState([]);
   const [dataButtonTime, setDataButtonTime] = useState({ from: 0, to: 24 });
   const [showModal, setShowModal] = useState(false);
   const [dataDetailModal, setDataDeatailModal] = useState({});
@@ -32,7 +28,11 @@ const SearchTicker = () => {
   const [priceRange, setPriceRange] = useState(3000);
 
   useEffect(() => {
-    setFilter({ ...filter, airline: dataCheckBoxAirlines });
+    if (dataCheckBoxAirlines.length !== 0) {
+      setFilter({ ...filter, airline: dataCheckBoxAirlines });
+    } else {
+      setFilter({ ...filter, airline: ["Vietnam Airlines", "Vietjet Air", "Bamboo Airways"] });
+    }
   }, [dataCheckBoxAirlines]);
 
   useEffect(() => {
