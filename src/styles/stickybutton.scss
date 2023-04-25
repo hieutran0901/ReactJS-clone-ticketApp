@@ -1,0 +1,20 @@
+.buttonStyle{
+    z-index: 100;
+    display: flex;
+    position: fixed;
+    padding: 7px 0px;
+    bottom: 0;
+    width: 100%;
+    justify-content:center;
+    background-color:#fff1f7;
+    opacity:0.9;
+    button{
+        padding: 5px 5px;
+        width: 140px;
+        border: none;
+        border-radius: 5px;
+        background-color: #a91968;
+        color: #fff;
+        font-size: 17px;
+    }
+}

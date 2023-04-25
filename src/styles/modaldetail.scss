@@ -1,0 +1,100 @@
+.modal {
+  font-family: "Nunito", sans-serif;
+  .modal-header {
+    .modal-title{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        button{
+            border: none;
+            background-color: transparent;
+        }
+    }
+  }
+  .modal-dialog {
+    min-width: 760px;
+  }
+  .modal-body {
+    .name-airline {
+      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      img {
+        margin-right: 10px;
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .content {
+      font-size: 14px;
+      li {
+        margin-bottom: 10px;
+      }
+    }
+    .group-infomation {
+      height: 250px;
+      font-weight: 700;
+      .time {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .province {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .chart {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        span {
+          color: #d82f8b;
+        }
+      }
+      .chart::before {
+        content: "";
+        margin-top: 25px;
+        position: absolute;
+        height: 80%;
+        border-left: 2px solid #f485c2;
+      }
+    }
+  }
+  .modal-footer {
+    background-color: #ece0e7;
+    button {
+      color: #d82f8b;
+      width: 150px;
+      height: 40px;
+      background-color: #fff;
+      border: 1px solid #d82f8b;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 1em;
+    }
+  }
+}
+
+@media (max-width: 767.9px) {
+  .modal {
+    position: relative;
+    .modal-body {
+      .group-infomation {
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgb(208, 208, 208);
+      }
+      .name-airline {
+        margin-top: 10px;
+      }
+    }
+    .modal-dialog {
+      position: absolute;
+      bottom: 0px;
+      margin: 0px;
+      min-width: 100%;
+    }
+  }
+}
