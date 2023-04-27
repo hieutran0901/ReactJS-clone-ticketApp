@@ -48,7 +48,12 @@ const ContentSearch = () => {
                   <label htmlFor="">
                     <RiPlaneFill></RiPlaneFill> Nơi đi
                   </label>
-                  <input type="text" value={searchValue.departure} onChange={(e) => e.target.value} />
+                  <input
+                    type="text"
+                    value={searchValue.departure}
+                    onChange={(e) => e.target.value}
+                    onBlur={() => setShow("")}
+                  />
                 </div>
                 <div className={`popper ${show === "departure" ? "show" : ""} d-flex justify-content-between`}>
                   <ul className="mt-3 w-100">
@@ -104,7 +109,12 @@ const ContentSearch = () => {
                   <label htmlFor="">
                     <RiPlaneFill style={{ transform: "rotateX(180deg)" }}></RiPlaneFill> Nơi đến
                   </label>
-                  <input type="text" value={searchValue.destination} onChange={(e) => e.target.value} />
+                  <input
+                    type="text"
+                    value={searchValue.destination}
+                    onChange={(e) => e.target.value}
+                    onBlur={() => setShow("")}
+                  />
                 </div>
                 <div className={`popper ${show === "destination" ? "show" : ""} d-flex justify-content-between`}>
                   <ul className="mt-3 w-100">
