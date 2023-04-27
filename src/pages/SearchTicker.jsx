@@ -175,12 +175,12 @@ const SearchTicker = () => {
                   Tìm được {listTickerSearch.length} chuyến bay đi {filter.destination} | {filter.flightDate}
                 </span>
                 <FormControl sx={{ m: 1, minWidth: 220 }} size="small">
-                  <InputLabel id="demo-select-small-label">Sắp xếp</InputLabel>
+                  <InputLabel id="demo-select-small-label"></InputLabel>
                   <Select
                     labelId="demo-select-small-label"
                     id="demo-select-small"
                     value={valueSort}
-                    label="Sắp xếp"
+                    label=""
                     onChange={handleChangeOption}
                   >
                     <MenuItem value={true}>Giá giảm dần</MenuItem>

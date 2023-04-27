@@ -236,6 +236,9 @@
   align-items: center;
   justify-content: center;
   visibility: hidden;
+  .text-primary{
+    color: #ed0c88;
+  }
 }
 .loadingShow {
   position: absolute;

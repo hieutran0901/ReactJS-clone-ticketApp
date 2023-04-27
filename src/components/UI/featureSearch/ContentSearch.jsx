@@ -5,9 +5,15 @@ import { RiSearchLine, RiPlaneFill, RiCloseFill, RiCalendar2Fill, RiUserFill, Ri
 import { Row, Col } from "reactstrap";
 
 const ContentSearch = () => {
+  const dataPopper = [
+    { province: "Hồ Chí Minh", domesticAirport: "Sân bay Tân Sơn Nhất" },
+    { province: "Hà Nội", domesticAirport: "Sân bay Nội Bài" },
+    { province: "Đà Nẵng", domesticAirport: "Sân bay Đà Nẵng" },
+  ];
   const navigate = useNavigate();
   const { subMitForm } = useContext(TickerContext);
   const [show, setShow] = useState("");
+  const [coutPassenger, setCountPassenger] = useState(1);
   const currentDate = new Date();
   const flightDate = new Date(currentDate.getTime() + 86400000).toISOString().split("T", 1)[0];
 
@@ -30,6 +36,12 @@ const ContentSearch = () => {
     e.preventDefault();
     subMitForm(searchValue);
     navigate("/ve-may-bay/tim-chuyen");
+  };
+
+  const handleDecrease = () => {
+    if (coutPassenger > 1) {
+      setCountPassenger((prev) => prev - 1);
+    }
   };
 
   return (
@@ -57,42 +69,18 @@ const ContentSearch = () => {
                 </div>
                 <div className={`popper ${show === "departure" ? "show" : ""} d-flex justify-content-between`}>
                   <ul className="mt-3 w-100">
-                    <li
-                      onClick={() => {
-                        setSearchValue({ ...searchValue, departure: "Hồ Chí Minh" });
-                        setShow("");
-                      }}
-                    >
-                      Hồ Chí Minh
-                      <span>Sân bay Tân Sơn Nhất</span>
-                    </li>
-
-                    <li
-                      onClick={() => {
-                        setSearchValue({ ...searchValue, departure: "Hà Nội" });
-                        setShow("");
-                      }}
-                    >
-                      Hà Nội
-                      <span>Sân bay Nội Bài</span>
-                    </li>
-                    <li
-                      onClick={() => {
-                        setSearchValue({ ...searchValue, departure: "Đà Nẵng" });
-                        setShow("");
-                      }}
-                    >
-                      Đà Nẵng
-                      <span>Sân bay Đà Nẵng</span>
-                    </li>
+                    {dataPopper.map((item, index) => (
+                      <li
+                        key={index}
+                        onClick={() => {
+                          setSearchValue({ ...searchValue, departure: item.province });
+                        }}
+                      >
+                        {item.province}
+                        <span>{item.domesticAirport}</span>
+                      </li>
+                    ))}
                   </ul>
-                  <span
-                    onClick={() => {
-                      setShow("");
-                    }}
-                  >
-                    <RiCloseFill></RiCloseFill>
-                  </span>
                 </div>
                 <button onClick={handleExchange}>
                   <RiExchangeLine></RiExchangeLine>
@@ -118,41 +106,18 @@ const ContentSearch = () => {
                 </div>
                 <div className={`popper ${show === "destination" ? "show" : ""} d-flex justify-content-between`}>
                   <ul className="mt-3 w-100">
-                    <li
-                      onClick={() => {
-                        setSearchValue({ ...searchValue, destination: "Hồ Chí Minh" });
-                        setShow("");
-                      }}
-                    >
-                      Hồ Chí Minh
-                      <span>Sân bay Tân Sơn Nhất</span>
-                    </li>
-                    <li
-                      onClick={() => {
-                        setSearchValue({ ...searchValue, destination: "Hà Nội" });
-                        setShow("");
-                      }}
-                    >
-                      Hà Nội
-                      <span>Sân bay Nội Bài</span>
-                    </li>
-                    <li
-                      onClick={() => {
-                        setSearchValue({ ...searchValue, destination: "Đà Nẵng" });
-                        setShow("");
-                      }}
-                    >
-                      Đà Nẵng
-                      <span>Sân bay Đà Nẵng</span>
-                    </li>
+                    {dataPopper.map((item, index) => (
+                      <li
+                        key={index}
+                        onClick={() => {
+                          setSearchValue({ ...searchValue, destination: item.province });
+                        }}
+                      >
+                        {item.province}
+                        <span>{item.domesticAirport}</span>
+                      </li>
+                    ))}
                   </ul>
-                  <span
-                    onClick={() => {
-                      setShow("");
-                    }}
-                  >
-                    <RiCloseFill></RiCloseFill>
-                  </span>
                 </div>
               </Col>
               <Col lg="3" md="6" className="form_field">
@@ -164,11 +129,44 @@ const ContentSearch = () => {
                 </div>
               </Col>
               <Col lg="3" md="6" className="form_field">
-                <div className="form_group">
+                <div
+                  className="form_group"
+                  onClick={() => {
+                    setShow("passenger");
+                  }}
+                >
                   <label htmlFor="">
                     <RiUserFill></RiUserFill> Hành Khách
                   </label>
-                  <input type="text" value="1 người lớn" onChange={(e) => e.target.value} />
+                  <input
+                    type="text"
+                    value={`${coutPassenger} Người lớn`}
+                    onChange={(e) => e.target.value}
+                    onBlur={() => {
+                      setShow("");
+                    }}
+                  />
+                  <div
+                    className={`popper passenger ${
+                      show === "passenger" ? "show" : ""
+                    } d-block justify-content-between p-3`}
+                  >
+                    <span style={{ fontSize: "14px", display: "block", marginBottom: "10px" }}>
+                      Vui lòng chọn số lượng hành khách chính xác để xem được mức giá tốt nhất.
+                    </span>
+                    <div className="d-flex justify-content-between">
+                      <span style={{ fontSize: "14px" }}>Người lớn {">"} 12 tuổi</span>
+                      <div className="count-passenger align-items-center">
+                        <span className={`decrease ${coutPassenger === 1 ? "disable" : ""}`} onClick={handleDecrease}>
+                          -
+                        </span>
+                        <span>{coutPassenger}</span>
+                        <span className="increase" onClick={() => setCountPassenger((pre) => pre + 1)}>
+                          +
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </Col>
             </Row>

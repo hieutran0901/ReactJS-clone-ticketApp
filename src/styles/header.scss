@@ -58,7 +58,7 @@
     border: 1px solid rgb(228, 224, 224);
     box-shadow: 3px 3px 7px #aeadad;
     background-color: #fff;
-    transition: all 0.2s ease-in;
+    transition: all 0.2s linear;
     opacity: 0;
     li {
       padding: 0px 10px;

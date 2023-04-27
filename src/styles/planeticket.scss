@@ -77,11 +77,32 @@
           color: #f375bc;
         }
       }
-
+      .passenger {
+        .count-passenger {
+          display: flex;
+          gap: 10px;
+          .decrease,
+          .increase {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 2px solid #d82d8b;
+            border-radius: 50%;
+            color: #d82d8b;
+            font-weight: 600;
+          }
+          .disable{
+            opacity: 0.7;
+          }
+        }
+      }
       .popper {
         position: absolute;
         top: 60px;
-
+        z-index: 100;
         visibility: hidden;
         width: 300px;
         border: 0.7px solid rgb(195, 187, 187);
